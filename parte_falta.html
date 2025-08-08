@@ -137,6 +137,7 @@
       <option value="METRÔ SÃO BENTO">METRÔ SÃO BENTO</option>
       <option value="METRÔ TRIANON MASP">METRÔ TRIANON MASP</option>
       <option value="METRÔ SÉ">METRÔ SÉ</option>
+    </select>
 
     <label for="interessado">Interessado:</label>
     <input type="text" id="interessado" value="Sd PM 000000-0 José dos Santos, da 1º Cia do 7ºBPM/M" />
@@ -233,9 +234,11 @@
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
 
+  // CORREÇÃO: função ajustada para evitar o bug de um dia antes
   function formatarDataExtenso(dataISO) {
     const meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-    const d = new Date(dataISO);
+    const [ano, mes, dia] = dataISO.split('-').map(Number);
+    const d = new Date(ano, mes - 1, dia);
     return `${d.getDate()} ${meses[d.getMonth()]} ${d.getFullYear()}`;
   }
 

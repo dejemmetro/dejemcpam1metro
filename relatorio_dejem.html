@@ -220,10 +220,11 @@
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
 
+  // Ajuste para evitar erro de fuso horário
   function formatarDataExtenso(dataISO) {
     const meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-    const d = new Date(dataISO);
-    return `${d.getDate()} ${meses[d.getMonth()]} ${d.getFullYear()}`;
+    const [ano, mes, dia] = dataISO.split('-').map(Number);
+    return `${dia} ${meses[mes - 1]} ${ano}`;
   }
 
   function formatarHora(horaStr) {
